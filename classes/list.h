@@ -84,37 +84,30 @@ bool list::del(int e){
     if(!exist(e)) return false;
 
     node* temp;
+    node* temp2;
     temp = first;
 
-    if(temp->next == NULL){
-        node* temp2;
-        temp2 = temp->next;
-        delete temp;
+    if(temp->element == e){
+        if(temp->next == NULL){
+            delete temp;
+            first = NULL;
+        }
+        else{
+            temp2 = temp->next;
+            first = temp2;
+            delete temp;
+        }
+    }
+    else {
+        while(temp != NULL){
+            if(temp->element == e){
+                temp2->next = temp->next;
+                delete temp;
+            }
+            temp2 = temp;
+            temp = temp->next;
+        }
     }
 
-    // one element
-    /*if(temp->next == NULL){
-        while(temp != NULL){
-            if(temp->element = e){
-                 delete temp;
-            }
-        }   
-        temp = temp->next;
-    }
-    else{
-        node* temp3;
-        node* temp2;
-        temp2 = first;
-        while(temp != NULL){
-            if(temp->element = e){
-                temp3 = temp->next;
-                delete temp;
-                temp2->next = temp3;
-            }
-        }
-        temp2 = temp;
-        temp = temp->next;
-    }
-*/
     return true;
 }

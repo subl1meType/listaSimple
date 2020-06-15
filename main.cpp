@@ -1,7 +1,7 @@
 #include "classes/list.h"
 #include "functions/menu.h"
 #include <iostream>
-#include <stdio.h>
+#include <unistd.h>
 using namespace std;
 
 int main(){
@@ -32,7 +32,11 @@ int main(){
                 }
                 break;
             case 3:
-                C.show();
+                if(!C.show()){
+                    cout << "\nList is empty.\n";
+                    sleep(1);
+                    break;
+                }
                 cout << "\n\n Select a value:";
                 cin >> value;
                 C.del(value);
@@ -40,6 +44,7 @@ int main(){
             case 4:
                 if(!C.show()){
                     cout << "\nList is empty.\n";
+                    sleep(2);
                 }
                 break;
         }
